@@ -13,10 +13,16 @@ def add_to_calculation(symbol):
 def evaluate_calculation():
     global calculation
     try:
+        # calculation = str(eval(calculation))
+        # text_result.delete(1.0, "end")
+        # text_result.insert(1.0, calculation)
+
+        # or
+        # This one is better
         result = str(eval(calculation))
         calculation = ""
         text_result.delete(1.0, "end")
-        text_result.insert(1.0, calculation)
+        text_result.insert(1.0, result)
     except:
         clear_field()
         text_result.insert(1.0, "Error")
@@ -98,7 +104,7 @@ btn_close = tk.Button(root, text=")", command=lambda: add_to_calculation(
 btn_close.grid(row=5, column=2)
 
 btn_equals = tk.Button(
-    root, text="=", command=lambda: evaluate_calculation, width=11, font=("Arial", 14))
+    root, text="=", command=evaluate_calculation, width=11, font=("Arial", 14))
 btn_equals.grid(row=6, column=2, columnspan=2)
 
 btn_clear = tk.Button(root, text="C",
